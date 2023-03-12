@@ -1,0 +1,103 @@
+﻿<Window x:Class="Rendering.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Rendering.Controls"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="800" Width="1600"
+        Background="#222">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Start"/>
+            </Menu>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding ViewModel.Scenes}" Margin="2">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Height="20" Background="Transparent">
+                                            <fa:IconImage Icon="Play">
+                                                <fa:IconImage.Resources>
+                                                    <Style TargetType="fa:IconImage">
+                                                        <Setter Property="Foreground" Value="#555"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Foreground" Value="Green"/>
+                                                            </Trigger>
+                                                            <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                                <Setter Property="Foreground" Value="Green"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </fa:IconImage.Resources>
+                                            </fa:IconImage>
+                                            <Button.Resources>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="BorderThickness" Value="0"/>                                                    
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <TextBlock Text="{Binding Name}" Margin="4,0,0,0" Foreground="White" FontFamily="Consolas" FontSize="16"/>
+                                    </StackPanel>
+
+                                    <Grid.Resources>
+                                        <Style TargetType="{x:Type Grid}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="CadetBlue"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Resources>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>                
+
+                <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+                <ItemsControl Grid.Row="2">
+
+                </ItemsControl>
+            </Grid>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+            <Grid Grid.Column="2" Background="Green"/>
+
+            <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
+
+            <controls:RenderingControl Grid.Column="4"/>
+        </Grid>
+    </Grid>
+</Window>
