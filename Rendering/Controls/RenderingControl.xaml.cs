@@ -19,7 +19,7 @@ namespace Rendering.Controls
                 const int style = 0x40000000 | 0x10000000; // Child | Visible
                 const int exStyle = 0x00040000; // AppWindow
 
-                WindowSource = new(classStyle, style, exStyle, 0, 0, 1, 1, "Win32WindowControl", hwndParent.Handle, true);
+                WindowSource = new(classStyle, style, exStyle, 0, 0, 1000, 1000, "Win32WindowControl", hwndParent.Handle, true);
 
                 return new HandleRef(this, WindowSource.Handle);
             }
@@ -33,7 +33,6 @@ namespace Rendering.Controls
         private readonly WindowHost Host = new();
 
         public IntPtr Handle => Host.Win32Handle;
-
 
         public RenderingControl()
         {

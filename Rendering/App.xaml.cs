@@ -4,9 +4,11 @@ namespace Rendering
 {
     public partial class App : Application
     {
-        public App() 
-        {
-            var init = VulkanCoreAPI.Initialize();
+        public App()
+        {          
+            //var compileWindow = new CompileWindow();
+            //compileWindow.Show();
+            //compileWindow.ViewModel.CompileShaders();
         }
     }
 }

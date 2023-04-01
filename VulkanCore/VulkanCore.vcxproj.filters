@@ -10,9 +10,17 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="VulkanCoreAPI.h" />
+    <ClInclude Include="VulkanKernal.h" />
+    <ClInclude Include="VulkanConfiguration.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="ObjectLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="VulkanKernal.cpp" />
+    <ClCompile Include="VulkanConfiguration.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="ObjectLoader.cpp" />
   </ItemGroup>
 </Project>

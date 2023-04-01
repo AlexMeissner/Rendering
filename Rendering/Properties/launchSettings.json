@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Rendering": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -10,4 +10,20 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+#include <Windows.h>
+#include <DirectXMath.h>
+#include <filesystem>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <array>
+#include <set>
+#include <unordered_map>
+
+#define VK_USE_PLATFORM_WIN32_KHR
+#include <vulkan/vulkan.h>
+#include <vulkan/vulkan_win32.h>
+
+#include <tiny_obj_loader.h>
+
 #endif //PCH_H
