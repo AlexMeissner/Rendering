@@ -3,6 +3,7 @@ using Rendering.GraphNodes;
 using Rendering.ViewModels;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media;
@@ -49,11 +50,13 @@ namespace Rendering
             }
         };
 
-        private readonly Timer RenderTimer = new(80);
+        private bool IsRunning = true;
+        private readonly Thread RenderThread;
 
         public MainWindow()
         {
             InitializeComponent();
+            RenderThread = new(new ThreadStart(OnRenderFrame));
         }
 
         private void OnRenderTimer(object? sender, ElapsedEventArgs e)
@@ -64,14 +67,24 @@ namespace Rendering
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             VulkanCoreAPI.InitializeVulkan(RenderControl.Handle);
-
-            RenderTimer.Elapsed += OnRenderTimer;
-            RenderTimer.Enabled = true;
-
-            //if (init)
-            //{                
-            //    VulkanCoreAPI.CleanUp();
-            //}
+            RenderThread.Start();
         }
+
+        private void OnClosed(object sender, System.EventArgs e)
+        {
+            IsRunning = false;
+            RenderThread.Join();
+            VulkanCoreAPI.CleanUp();
+        }
+
+        private void OnRenderFrame()
+        {
+            while (IsRunning)
+            {
+                VulkanCoreAPI.DrawFrame();
+            }
+        }
+
+
     }
 }

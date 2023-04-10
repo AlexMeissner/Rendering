@@ -26,39 +26,7 @@
 
         <ItemsControl.Resources>
             <DataTemplate DataType="{x:Type local:GraphNode}">
-                <Border BorderBrush="Black" Background="#80000000" BorderThickness="2" CornerRadius="5">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White" Background="{Binding Color}"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="40"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <ItemsControl Grid.Column="0" ItemsSource="{Binding Inputs}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="10" Height="10" CornerRadius="5" BorderBrush="{Binding Color}" BorderThickness="1"/>
-                                            <TextBlock Margin="5,0,0,0" Text="{Binding Name}" Foreground="White"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                            <ItemsControl Grid.Column="2" ItemsSource="{Binding Outputs}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Margin="0,0,5,0" Text="{Binding Name}" Foreground="White"/>
-                                            <Border Width="10" Height="10" CornerRadius="5" BorderBrush="{Binding Color}" BorderThickness="1"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </StackPanel>
-                </Border>
+                <local:Node GraphNode="{Binding .}"/>                
             </DataTemplate>
             <DataTemplate DataType="{x:Type local:GraphEdge}">
                 <Border BorderBrush="Black" BorderThickness="2">

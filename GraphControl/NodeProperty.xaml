@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="GraphControl.NodeProperty"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraphControl"
+             mc:Ignorable="d"
+             Name="NodePropertyControl">
+    
+    <ContentControl>
+        <StackPanel Orientation="Horizontal">
+            <local:ConnectionPoint PropertyType="{Binding ElementName=NodePropertyControl, Path=PropertyType}"/>
+            <TextBlock Margin="5,0,0,0" Text="{Binding ElementName=NodePropertyControl, Path=PropertyName}" Foreground="White"/>
+        </StackPanel>
+        <ContentControl.Style>
+            <Style TargetType="{x:Type ContentControl}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=NodePropertyControl, Path=IsInput}" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding ElementName=NodePropertyControl, Path=PropertyName}" Foreground="White"/>
+                                        <local:ConnectionPoint Margin="5,0,0,0" IsAttached="True" PropertyType="{Binding ElementName=NodePropertyControl, Path=PropertyType}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ContentControl.Style>
+    </ContentControl>
+</UserControl>

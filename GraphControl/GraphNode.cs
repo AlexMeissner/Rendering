@@ -14,7 +14,7 @@ namespace GraphControl
         public abstract SolidColorBrush Color { get; }
         public abstract BitmapImage Icon { get; }
 
-        public ICollection<GraphNodeProperty> Inputs { get; set; }
-        public ICollection<GraphNodeProperty> Outputs { get; set; }
+        public ICollection<GraphNodeProperty>? Inputs { get; set; }
+        public ICollection<GraphNodeProperty>? Outputs { get; set; }
     }
 }
