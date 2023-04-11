@@ -29,8 +29,6 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="2"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
@@ -64,7 +62,7 @@
                                             </fa:IconImage>
                                             <Button.Resources>
                                                 <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="BorderThickness" Value="0"/>                                                    
+                                                    <Setter Property="BorderThickness" Value="0"/>
                                                 </Style>
                                             </Button.Resources>
                                         </Button>
@@ -85,7 +83,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>                
+                </ScrollViewer>
 
                 <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
 
@@ -95,12 +93,30 @@
             </Grid>
 
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-            
-            <graphcontrol:NodeGraphControl Grid.Column="2" GraphItems="{Binding ViewModel.GraphItems}"/>
 
-            <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch"/>
-            
-            <controls:RenderingControl x:Name="RenderControl" Grid.Column="4"/>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <graphcontrol:NodeGraphControl Grid.Column="0" GraphItems="{Binding ViewModel.GraphItems}"/>
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <controls:RenderingControl Grid.Column="2" x:Name="RenderControl"/>
+                </Grid>
+
+                <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+                <controls:OutputControl Grid.Row="2"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

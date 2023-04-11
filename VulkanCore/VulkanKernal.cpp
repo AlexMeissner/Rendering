@@ -355,39 +355,11 @@ namespace VulkanKernal
 
 	bool VK::Initialize(HWND hwnd, HINSTANCE hInstance)
 	{
-		AllocConsole();
-		FILE* fDummy;
-		freopen_s(&fDummy, "CONOUT$", "w", stdout);
+		//AllocConsole();
+		//FILE* fDummy;
+		//freopen_s(&fDummy, "CONOUT$", "w", stdout);
 
-		//const wchar_t CLASS_NAME[] = L"Sample Window Class";
-		//
-		//WNDCLASS wc = { };
-		//
-		//wc.lpfnWndProc = WindowProc;
-		//wc.hInstance = hInstance;
-		//wc.lpszClassName = CLASS_NAME;
-		//
-		//RegisterClass(&wc);
-		//
-		//HWND hwnd2 = CreateWindowEx(
-		//	0,                              // Optional window styles.
-		//	CLASS_NAME,                     // Window class
-		//	L"Learn to Program Windows",    // Window text
-		//	WS_OVERLAPPEDWINDOW,            // Window style
-		//
-		//	// Size and position
-		//	CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-		//
-		//	NULL,       // Parent window    
-		//	NULL,       // Menu
-		//	hInstance,  // Instance handle
-		//	NULL        // Additional application data
-		//);
-		//
-		//ShowWindow(hwnd2, SW_SHOW);
-		HWND hwnd2 = hwnd;
-
-		Hwnd = hwnd2;
+		Hwnd = hwnd;
 
 		Instance = CreateInstance(enableValidationLayers);
 
@@ -396,14 +368,14 @@ namespace VulkanKernal
 			DebugMessenger = CreateDebugMessenger(Instance);
 		}
 
-		if (!CreateSurface(hwnd2, hInstance))
+		if (!CreateSurface(hwnd, hInstance))
 		{
 			return false;
 		}
 
 		SelectPhysicalDevice();
 		CreateLogicalDevice();
-		CreateSwapChain(hwnd2);
+		CreateSwapChain(hwnd);
 		CreateImageViews();
 		CreateRenderPass();
 		CreateDescriptorSetLayout();
