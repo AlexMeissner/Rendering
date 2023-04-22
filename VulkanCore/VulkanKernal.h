@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vertex.h"
+#include "PipelineState.h"
 
 namespace VulkanKernal
 {
@@ -25,7 +26,6 @@ namespace VulkanKernal
 		void CreateDescriptorSetLayout();
 		void CreateDescriptorSets();
 		void CreateFramebuffers();
-		void CreateGraphicsPipeline();
 		void CreateImage(uint32_t width, uint32_t height, uint32_t mipLevels, VkSampleCountFlagBits numSamples, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory) const;
 		void CreateIndexBuffer();
 		void CreateLogicalDevice();
@@ -71,8 +71,6 @@ namespace VulkanKernal
 		std::vector<VkFramebuffer> SwapChainFramebuffers;
 		VkRenderPass RenderPass = VK_NULL_HANDLE;
 		VkDescriptorSetLayout DescriptorSetLayout = VK_NULL_HANDLE;
-		VkPipelineLayout PipelineLayout = VK_NULL_HANDLE;
-		VkPipeline GraphicsPipeline = VK_NULL_HANDLE;
 		VkCommandPool CommandPool = VK_NULL_HANDLE;
 		VkImage ColorImage = VK_NULL_HANDLE;
 		VkDeviceMemory ColorImageMemory = VK_NULL_HANDLE;
@@ -101,6 +99,7 @@ namespace VulkanKernal
 		std::vector<VkFence> InFlightFences;
 		uint32_t CurrentFrame = 0;
 		bool FramebufferResized = false;
+		PipelineStateObject PSO;
 
 		HWND Hwnd;
 	};

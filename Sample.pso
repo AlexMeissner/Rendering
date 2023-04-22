@@ -1,0 +1,57 @@
+{
+    "InputAssembler":
+    {
+    },
+    "VertexShader":
+    {
+    },
+    "TessellationShader":
+    {
+    },
+    "GeometryShader":
+    {
+    },
+    "Rasterization":
+    {
+        "DepthClampEnable": false,
+        "DiscardEnable": false,
+        "PolygonMode": 0,
+        "CullMode": 0,
+        "FrontFace": 0,
+        "DepthBiasEnable": false,
+        "DepthBiasConstantFactor": 0.0,
+        "DepthBiasClamp": 0.0,
+        "DepthBiasSlopeFactor": 0.0,
+        "LineWidth": 0.0
+    },
+    "DepthStencil":
+    {
+        "DepthTestEnable": false,
+        "DepthWriteEnable": false,
+        "DepthCompare": 0,
+        "DepthBoundsTestEnable": false,
+        "StencilTestEnable": false,
+        "FrontFailOperation": 0,
+        "FrontPassOperation": 0,
+        "FrontDepthFailOperation": 0,
+        "FrontDepthPassOperation": 0,
+        "FrontCompareMask": 0,
+        "FrontWriteMask": 0,
+        "FrontReference": 0,
+        "BackFailOperation": 0,
+        "BackPassOperation": 0,
+        "BackDepthFailOperation": 0,
+        "BackDepthPassOperation": 0,
+        "BackCompareMask": 0,
+        "BackWriteMask": 0,
+        "BackReference": 0,
+        "MinDepthBounds": 0.0,
+        "MaxDepthBounds": 0.0
+    },
+    "FragmentShader":
+    {
+    },
+    "ColorBlending":
+    {
+    }
+}

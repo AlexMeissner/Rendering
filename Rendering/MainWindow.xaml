@@ -13,19 +13,7 @@
         Closed="OnClosed"
         Background="#222">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Menu>
-                <MenuItem Header="Start"/>
-            </Menu>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="2"/>
                 <ColumnDefinition Width="*"/>
@@ -94,29 +82,448 @@
 
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
 
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2"/>
-                    <RowDefinition Height="200"/>
-                </Grid.RowDefinitions>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <graphcontrol:NodeGraphControl Grid.Column="0" GraphItems="{Binding ViewModel.GraphItems}"/>
-                    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-                    <controls:RenderingControl Grid.Column="2" x:Name="RenderControl"/>
-                </Grid>
+                <TabControl Grid.Column="0" Background="Transparent">
+                    <TabItem Header="Node Graph">
+                        <graphcontrol:NodeGraphControl GraphItems="{Binding ViewModel.GraphItems}"/>
+                    </TabItem>
+                    <TabItem Header="Pipeline">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <!-- Vertex Input State -->
+                                <Border Background="CadetBlue" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Input Assembler" FontWeight="Bold"/>
+                                        <Border BorderBrush="Black" BorderThickness="1"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Background="Green" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <TextBlock Text="Vertex Shader" FontWeight="Bold" Foreground="White"/>
+                                </Border>
+                                <Border Background="LightGray" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <TextBlock Text="Tessellation Shader" FontWeight="Bold"/>
+                                </Border>
+                                <Border Background="SaddleBrown" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <TextBlock Text="Geometry Shader" FontWeight="Bold" Foreground="White"/>
+                                </Border>
+                                <Border Background="DarkRed" BorderBrush="White" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Rasterization" FontWeight="Bold" Foreground="White"/>
+                                        <Border BorderBrush="White" BorderThickness="1"/>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+                                            <TextBlock Grid.Column="0" Text="Depth Clamp Enable" Foreground="White"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                <controls:OutputControl Grid.Row="2"/>
+                                            <TextBlock Grid.Column="0" Text="Discard Enable" Foreground="White"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Polygon Mode" Foreground="White"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Fill</ComboBoxItem>
+                                                <ComboBoxItem>Line</ComboBoxItem>
+                                                <ComboBoxItem>Point</ComboBoxItem>
+                                                <ComboBoxItem>Fill Rectangle NV</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Cull Mode" Foreground="White"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>None</ComboBoxItem>
+                                                <ComboBoxItem>Front</ComboBoxItem>
+                                                <ComboBoxItem>Back</ComboBoxItem>
+                                                <ComboBoxItem>Front and Back</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Face" Foreground="White"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Counter Clockwise</ComboBoxItem>
+                                                <ComboBoxItem>Clockwise</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Bias Enable" Foreground="White"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Bias Constant Factor" Foreground="White"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Bias Clamp" Foreground="White"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Bias Slope Factor" Foreground="White"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Line Width" Foreground="White"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>                                        
+                                    </StackPanel>
+                                </Border>
+                                <Border Background="Turquoise" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Depth Stencil" FontWeight="Bold"/>
+                                        <Border BorderBrush="Black" BorderThickness="1"/>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Test Enable"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Write Enable"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Compare"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Never</ComboBoxItem>
+                                                <ComboBoxItem>Less</ComboBoxItem>
+                                                <ComboBoxItem>Equal</ComboBoxItem>
+                                                <ComboBoxItem>Less or equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater</ComboBoxItem>
+                                                <ComboBoxItem>Not equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater or equal</ComboBoxItem>
+                                                <ComboBoxItem>Always</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Depth Bounds Test Enable"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Stencil Test Enable"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Fail Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Pass Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Depth Fail Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Compare Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Never</ComboBoxItem>
+                                                <ComboBoxItem>Less</ComboBoxItem>
+                                                <ComboBoxItem>Equal</ComboBoxItem>
+                                                <ComboBoxItem>Less or equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater</ComboBoxItem>
+                                                <ComboBoxItem>Not equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater or equal</ComboBoxItem>
+                                                <ComboBoxItem>Always</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Compare Mask"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Write Mask"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Front Reference"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Fail Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Pass Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Depth Fail Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Keep</ComboBoxItem>
+                                                <ComboBoxItem>Zero</ComboBoxItem>
+                                                <ComboBoxItem>Replace</ComboBoxItem>
+                                                <ComboBoxItem>Increment and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and clamp</ComboBoxItem>
+                                                <ComboBoxItem>Invert</ComboBoxItem>
+                                                <ComboBoxItem>Invert and wrap</ComboBoxItem>
+                                                <ComboBoxItem>Decrement and wrap</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Compare Operation"/>
+                                            <ComboBox Grid.Column="1" SelectedIndex="0">
+                                                <ComboBoxItem>Never</ComboBoxItem>
+                                                <ComboBoxItem>Less</ComboBoxItem>
+                                                <ComboBoxItem>Equal</ComboBoxItem>
+                                                <ComboBoxItem>Less or equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater</ComboBoxItem>
+                                                <ComboBoxItem>Not equal</ComboBoxItem>
+                                                <ComboBoxItem>Greater or equal</ComboBoxItem>
+                                                <ComboBoxItem>Always</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Compare Mask"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Write Mask"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Back Reference"/>
+                                            <CheckBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Min Depth Bounds"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Max Depth Bounds"/>
+                                            <TextBox Grid.Column="1"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                                <Border Background="Orange" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <TextBlock Text="Fragment Shader" FontWeight="Bold"/>
+                                </Border>
+                                <Border Background="Purple" BorderBrush="Black" BorderThickness="2" CornerRadius="4" Margin="10">
+                                    <TextBlock Text="Color Blending" FontWeight="Bold" Foreground="White"/>
+                                </Border>
+                                <!-- Viewport State -->                                
+                                <!-- Multisample State -->
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+                <controls:RenderingControl Grid.Column="2" x:Name="RenderControl"/>
             </Grid>
+
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+            <controls:OutputControl Grid.Row="2"/>
         </Grid>
     </Grid>
 </Window>

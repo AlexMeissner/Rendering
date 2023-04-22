@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;$(SolutionDir)libraries\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -102,7 +102,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;$(SolutionDir)libraries\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;$(SolutionDir)libraries\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -150,7 +150,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>W:\VulkanSDK\1.3.204.1\Include;$(SolutionDir)libraries\stb-master;$(SolutionDir)libraries\tinyobjloader-master;$(SolutionDir)libraries\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -170,6 +170,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="ObjectLoader.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PipelineState.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VulkanConfiguration.h" />
     <ClInclude Include="VulkanCoreAPI.h" />
@@ -184,6 +185,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PipelineState.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="VulkanConfiguration.cpp" />
     <ClCompile Include="VulkanKernal.cpp" />
